@@ -31,6 +31,11 @@ if Rails.env.development?
     hash[name] = Person.find_or_create_by! name: name
   end
 
+  leagues = Hash.new do |hash, name|
+    print 'l'
+    hash[name] = League.find_or_create_by! name: name
+  end
+
   puts 'Importing checkins'
 
   CSV.table(weighins_csv).each do |row|
@@ -44,9 +49,16 @@ if Rails.env.development?
     end
   end
 
-  # CSV.foreach(participants_csv, headers: true) do |row|
-  #   # Name,Event,League,Date
-  #   # Lenny Anderson,Thankgiving 2000,Anderson Family Championship,2000-11-30
-  # end
+  CSV.table(participants_csv).each do |row|
+    # Name,Event,League,Date
+    # Lenny Anderson,Thankgiving 2000,Anderson Family Championship,2000-11-30
+    travel_to row[:date].to_date do
+      person = people[row[:name]]
+      league = leagues[row[:league]]
+      person.leagues << league
+      print '·'
+    end
+  end
 
+  puts
 end
