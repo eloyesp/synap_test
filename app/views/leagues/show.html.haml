@@ -9,7 +9,7 @@
     - previous_score = nil
     - index = 0
     - people_with_current_rank = 1
-    - @event.people.sort_by{|p| p.up_by || -1000 }.reverse.each do |person|
+    - @league.people.on_event(@event).sort_by{|p| p.up_by || -1000 }.reverse.each do |person|
       - up_by = person.try(:up_by)
       - positive = up_by.to_f > 0 ? 'positive' : 'negative'
       %tr

@@ -1,6 +1,7 @@
 class LeaguesController < ApplicationController
   def index
-    @leagues = League.all
+    event = Event.last
+    @leagues = event.leagues
   end
 
   def show
