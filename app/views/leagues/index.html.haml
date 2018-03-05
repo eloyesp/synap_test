@@ -1,0 +1,10 @@
+%h1{class: 'text-center'}= "List of leagues:"
+%div{class: 'table-container'}
+  %table{border: 0, class: 'table table-condensed borderless'}
+    %tr
+      %th{class: 'ordinal'}
+      %th{class: 'text-left'} NAME
+    - @leagues.each_with_index do |league, index|
+      %tr
+        %td{class: 'ordinal'}= index
+        %td{class: "text-left weight"}=link_to league.name, league
