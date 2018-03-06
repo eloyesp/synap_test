@@ -3,6 +3,7 @@
 
 = render "people/leaderboard", people: @league.people.on_event(@event)
 
+= link_to('GLOBAL LEADERBOARD', people_path, class: 'btn btn-default')
 = link_to('LEAGUES', leagues_path, class: 'btn btn-default')
 = link_to('OTHER EVENTS', events_path, class: 'btn btn-default')
 %br
